@@ -1,0 +1,14 @@
+CREATE TABLE 'CUSTOMER' (
+  'CUST_ID' varchar(255) NOT NULL,
+  'FIRST_NAME' varchar(255),
+  'LAST_NAME' varchar(255),
+  PRIMARY KEY ('cust_id')
+);
+
+CREATE TABLE 'ORDERS' (
+  'ORDER_ID' int NOT NULL,
+  'CUST_ID' varchar(255),
+  'ORDER_NAME' varchar(255),
+  PRIMARY KEY ('ORDER_ID'),
+  FOREIGN KEY ('CUST_ID') REFERENCES CUSTOMER('CUST_ID')
+);
