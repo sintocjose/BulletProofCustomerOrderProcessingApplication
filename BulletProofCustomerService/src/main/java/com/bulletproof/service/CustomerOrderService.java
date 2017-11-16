@@ -11,7 +11,7 @@ public interface CustomerOrderService {
 
 	List<Customer> getCustomers();
 
-	void createOrder(String custId, String orderName);
+	boolean createOrder(String custId, String orderName);
 
 	List<CustomerEntity> findByName(String name);
 }

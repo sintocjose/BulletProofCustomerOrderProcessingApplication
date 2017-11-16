@@ -57,7 +57,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService{
 	}
 
 	@Override
-	public void createOrder(String custId, String orderName) {
+	public boolean createOrder(String custId, String orderName) {
 		log.info("created order for cust id"+custId+" order name"+orderName);	
 		OrderEntity entity = new OrderEntity();
 		entity.setOrderName(orderName);
@@ -66,6 +66,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService{
 		entity.setCustomer(customer);
 		orderRepository.save(entity);
 		log.info("Persisted Order Entity"+entity);
+		return true;
 	}
 
 	@Override

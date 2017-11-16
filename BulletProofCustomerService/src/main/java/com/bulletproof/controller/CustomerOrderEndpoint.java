@@ -1,7 +1,6 @@
 package com.bulletproof.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,9 +35,12 @@ public class CustomerOrderEndpoint {
 	}
 
 	@RequestMapping(value = "customerService/createOrder/{custId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseStatus(HttpStatus.CREATED) void createOrder(@PathVariable("custId") String customerId,
+	public @ResponseStatus(HttpStatus.CREATED) boolean createOrder(@PathVariable("custId") String customerId,
 			@RequestBody String orderName) {
-		customerOrderService.createOrder(customerId, orderName);
+		if(customerId==null || orderName ==null||customerId.trim().length()==0|| orderName.trim().length()==0){
+			throw new RuntimeException("Order Name and Customer Id should not be empty");
+		}
+		return customerOrderService.createOrder(customerId, orderName);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "customerService/findByName")
